@@ -30,14 +30,16 @@ public class Player : MonoBehaviour
         inputVector = inputVector.normalized;
 
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
-        // Calculate - Frame Rate 
         transform.position += moveDir * moveSpeed * Time.deltaTime;
+
+        float rotateSpeed = 10f;
+        transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * rotateSpeed);
     }
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+       
     }
 
     
