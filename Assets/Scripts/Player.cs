@@ -20,7 +20,14 @@ public class Player : MonoBehaviour
     {
         Vector2 inputVector = gameInput.GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
+
+        float playerSize = .7f;
+        bool canMove = !Physics.Raycast(transform.position, moveDir, playerSize);
+        
+        if (canMove)
+        {
+            transform.position += moveDir * moveSpeed * Time.deltaTime;
+        }
 
         isWalking = moveDir != Vector3.zero;
         float rotateSpeed = 10f;
